@@ -1,9 +1,9 @@
 downloads/
 
-Symbol/
-SetTable/
-CompleteTable/
-
+src/img/Symbol/
+src/img/SetTable/
+src/img/CompleteTable/
+historical/
 *.pdf
 *.json
 
