@@ -4,6 +4,7 @@ Symbol/
 SetTable/
 CompleteTable/
 
-*.pdf/
+*.pdf
+*.json
 
 old_imports.ipynb/
