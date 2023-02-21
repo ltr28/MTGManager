@@ -14,7 +14,7 @@ class BaseDataSource:
         for key, value in attrs.items():
             setattr(self, key, value)
         
-        self.base_path = Path('data', self.name)
+        self.base_path = Path('downloads', self.name)
         if not self.base_path.exists():
             self.base_path.mkdir()
 
