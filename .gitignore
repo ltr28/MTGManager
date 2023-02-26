@@ -153,3 +153,6 @@ dmypy.json
 cython_debug/
 
 .vscode/
+mtg-venv/
+mtg_management/collection_management/collection_management/settings.py
+

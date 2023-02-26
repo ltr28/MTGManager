@@ -14,8 +14,12 @@ setup(
         description=DESCRIPTION,
         long_description=LONG_DESCRIPTION,
         packages=find_packages(),
-        install_requires=[], # add any additional packages that 
-        # needs to be installed along with your package. Eg: 'caer'
+        install_requires=[
+            'pandas',
+            'pyarrow',
+            'fastparquet',
+            'requests'
+            ],
         
         keywords=['python', 'first package'],
         classifiers= [
@@ -25,5 +29,6 @@ setup(
             "Programming Language :: Python :: 3",
             "Operating System :: MacOS :: MacOS X",
             "Operating System :: Microsoft :: Windows",
-        ]
+        ],
+        python_requires='>=3.7'
 )
