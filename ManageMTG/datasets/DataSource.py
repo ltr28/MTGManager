@@ -4,9 +4,8 @@ import datetime
 from pathlib import Path
 import requests
 import pandas as pd
-import mtg_management
 
-class BaseDataSource:
+class PriceSource:
     def __init__(self, **kwargs: dict):
         attrs = {
             'name': 'base',
@@ -15,7 +14,7 @@ class BaseDataSource:
         attrs.update(kwargs)
         for key, value in attrs.items():
             setattr(self, key, value)
-        module_path = Path(mtg_management.__path__[0]).parent
+        module_path = Path(__file__).parent.parent.parent
         self.base_path = Path(module_path, 'downloads', self.name)
         if not self.base_path.exists():
             self.base_path.mkdir()
@@ -36,7 +35,7 @@ class BaseDataSource:
             return None
 
     
-class CardKingdomSource(BaseDataSource):
+class CardKingdomSource(PriceSource):
     
     def __init__(self, **kwargs):
         
