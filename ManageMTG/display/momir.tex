@@ -1,14 +1,16 @@
-\documentclass[12pt, letterpaper]{standalone}
+\documentclass[letterpaper]{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel} % <- MWE compiles without this line
 \usepackage[l3]{csvsimple}
 \usepackage[T1]{fontenc} % higher quality font encoding
 \usepackage[sfdefault]{universalis} % load the font and set it to default
 \begin{document}
 
-% \csvautotabular{../../downloads/missing.csv}
-\begin{tabular}{|l|l|l|}%
-\bfseries Card Name & \bfseries Min Price & \bfseries Sets%
-\csvreader[head to column names]{../../downloads/missing.csv}{}%
-{\csvcoli & \csvcolii & \csvcoliii}%
+\begin{tabular}{l|l|l}%
+    \bfseries Card Name & \bfseries Min Price & \bfseries Sets%
+    \csvreader[head to column names, separator=semicolon]{../../downloads/missing.csv}{}%
+    {\\\hline\name & \price & \set}
 \end{tabular}
+
 
 \end{document}

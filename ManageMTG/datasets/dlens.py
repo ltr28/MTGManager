@@ -78,7 +78,7 @@ def get_ck_by_card(df: pd.DataFrame) -> pd.DataFrame:
     name_df['set'] = name_df['sku'].str.split('-').str[0]
     name_df['price'] = name_df['price_retail']
     min_prices = name_df.sort_values('price').groupby('name')['price'].head(1)
-    edition = name_df.groupby('name')['set'].apply(set)
+    edition = name_df.groupby('name')['set'].apply(set).agg(' '.join)
     combined = pd.concat([min_prices, edition], axis=1)
     combined = combined.sort_values('name').reset_index()
 
@@ -104,9 +104,9 @@ def main():
     missing_ck = ck_df[ck_df.name.isin(missing_names_ck)]
 
 
-    # missing_ck = missing_ck.sort_values('price', ascending=False).reset_index()
+    missing_ck = missing_ck.sort_values('price', ascending=False).reset_index()
 
-    missing_ck.to_csv('downloads/missing.csv', index=False)
+    missing_ck.to_csv('downloads/missing.csv', index=False, sep=';')
 
 
 if __name__ == "__main__":

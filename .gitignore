@@ -62,4 +62,4 @@ cover/
 
 
 # Package specific excludes:
-ManageMTG/display/momir.pdf
+ManageMTG/display/*.pdf
