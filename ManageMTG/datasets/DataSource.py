@@ -2,19 +2,16 @@
 
 import datetime
 from pathlib import Path
-import requests
+
 import pandas as pd
+import requests
 
 
 class PriceSource:
     def __init__(self, **kwargs: dict):
-        attrs = {
-            "name": "base",
-            "urls": [],
-        }
-        attrs.update(kwargs)
-        for key, value in attrs.items():
-            setattr(self, key, value)
+        self.name = kwargs.pop("name", "base")
+        self.urls = kwargs.pop("urls", [])
+
         module_path = Path(__file__).parent.parent.parent
         self.base_path = Path(module_path, "downloads", self.name)
         if not self.base_path.exists():
@@ -22,23 +19,21 @@ class PriceSource:
 
     def get_data(self):
         for url in self.urls:
-            new_file = Path(
-                self.base_path, f"{datetime.date.today().strftime('%d%m%y')}.parquet"
-            )
+            new_file = Path(self.base_path, f"{datetime.date.today().strftime('%d%m%y')}.parquet")
             if not new_file.exists():
-                json_data = self.retrieve_json(url)
+                json_data = requests.get(url, timeout=20).json()
                 df = self.json_to_df(json_data)
                 df.to_parquet(new_file)
 
-    def retrieve_json(self, url: str):
-        """Retrieves data from url"""
-        try:
-            return requests.get(url).json()
-        except Exception:
-            return None
+    def json_to_df(self, json_data: pd.DataFrame):
+        raise NotImplementedError("Implement the json_to_df function")
 
 
 class CardKingdomSource(PriceSource):
+    """
+    Retrieves Price Information from Card Kingdom's API.
+    """
+
     def __init__(self, **kwargs):
         urls = ["https://api.cardkingdom.com/api/pricelist"]
         super().__init__(name="ck", urls=urls, **kwargs)

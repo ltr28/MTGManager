@@ -1,16 +1,38 @@
-\documentclass[letterpaper]{standalone}
-\usepackage[utf8]{inputenc}
-\usepackage[ngerman]{babel} % <- MWE compiles without this line
+\documentclass[12pt]{report}
+\usepackage[margin=0.5in]{geometry}
 \usepackage[l3]{csvsimple}
-\usepackage[T1]{fontenc} % higher quality font encoding
-\usepackage[sfdefault]{universalis} % load the font and set it to default
+\usepackage[sfdefault]{universalis}
+\usepackage{longtable}
+
 \begin{document}
 
-\begin{tabular}{l|l|l}%
-    \bfseries Card Name & \bfseries Min Price & \bfseries Sets%
-    \csvreader[head to column names, separator=semicolon]{../../downloads/missing.csv}{}%
-    {\\\hline\name & \price & \set}
-\end{tabular}
+\begin{longtable}{| p{6cm} | p{2cm} | p{10cm} | }
 
+\hline
+    \multicolumn{1}{|c|}{\textbf{Card Name}} & 
+    \multicolumn{1}{c|}{\textbf{Min Price}} &
+    \multicolumn{1}{c|}{\textbf{Sets}} \\
+\hline
+\endfirsthead
+
+\multicolumn{3}{c}%
+{} \\
+\hline 
+    \multicolumn{1}{|c|}{\textbf{Card Name}} &
+    \multicolumn{1}{c|}{\textbf{Min Price}} &
+    \multicolumn{1}{c|}{\textbf{Sets}} \\ 
+\hline 
+\endhead
+
+\csvreader[
+    head to column names,
+    separator=semicolon,
+    late after line = \\\hline
+    ]%
+{../../downloads/missing_alphabetical.csv}{}%
+{
+    \name & \price & \set
+}
+\end{longtable}
 
 \end{document}
