@@ -61,5 +61,9 @@ cover/
 *.pdfsync
 
 
+# Virtual Environment Files:
+.venv/
+
+
 # Package specific excludes:
 ManageMTG/display/*.pdf
