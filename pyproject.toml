@@ -1,5 +1,5 @@
 [project]
-name = "budgetmtg"
+name = "NZMTG"
 description = "A small example package"
 authors = [{ name = "Luke Trenberth", email = "luketrenberth@gmail.com" }]
 license = { file = "LICENSE" }
@@ -20,5 +20,5 @@ dependencies = [
 dynamic = ["version", "readme"]
 
 [tool.setuptools.dynamic]
-version = {attr = "budgetmtg.version"}
+version = {attr = "NZMTG.version"}
 readme = {file = "README.txt"}
