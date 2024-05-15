@@ -3,7 +3,7 @@ install:
 	pip install -e .
 
 lint:
-	pylint --disable=R,C ManageMTG/datasets/
+	ruff check .
 
 test:
 	python -m pytest .
