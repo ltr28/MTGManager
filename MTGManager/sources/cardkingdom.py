@@ -2,7 +2,7 @@
 
 import pandas as pd
 
-from NZMTG.sources import SourceInterface
+from .interface import SourceInterface
 
 
 class CardKingdom(SourceInterface):

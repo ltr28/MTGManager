@@ -8,7 +8,7 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
-requires-python = ">=3.7"
+requires-python = ">=3.10"
 dependencies = [
     "fastparquet",
     "pandas",
@@ -19,6 +19,10 @@ dependencies = [
 ]
 dynamic = ["version", "readme"]
 
+[project.optional-dependencies]
+test = ['pytest']
+
+
 [tool.setuptools.dynamic]
-version = {attr = "NZMTG.version"}
+version = {attr = "MTGManager.version"}
 readme = {file = "README.txt"}
