@@ -1,5 +1,5 @@
 [project]
-name = "NZMTG"
+name = "nzmagic"
 description = "A small example package"
 authors = [{ name = "Luke Trenberth", email = "luketrenberth@gmail.com" }]
 license = { file = "LICENSE" }
@@ -28,5 +28,5 @@ target-version = "py310"
 fix = true
 
 [tool.setuptools.dynamic]
-version = {attr = "MTGManager.version"}
+version = {attr = "__version__"}
 readme = {file = "README.txt"}
