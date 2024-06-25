@@ -50,8 +50,13 @@ def momir_legal(all_cards_df: pd.DataFrame) -> pd.DataFrame:
         if isinstance(mtg_set, str) and "p" + mtg_set in all_sets:
             bad_sets.append("p" + mtg_set)
 
-    all_momir_df = all_cards_df[all_cards_df["type_line"].str.split("//").str[0].str.contains("Creature") == True]
-    all_momir_df = all_momir_df[all_momir_df["type_line"].str.contains("Token") == False]
+    all_momir_df = all_cards_df[
+        all_cards_df["type_line"].str.split("//").str[0].str.contains("Creature")
+        == True
+    ]
+    all_momir_df = all_momir_df[
+        all_momir_df["type_line"].str.contains("Token") == False
+    ]
     all_momir_df = all_momir_df[~all_momir_df["set"].isin(bad_sets)]
     all_momir_df = all_momir_df[~all_momir_df["name"].str.startswith("A-")]
     all_momir_df = all_momir_df[all_momir_df["games"].astype(str).str.contains("paper")]
@@ -89,7 +94,9 @@ def main():
     db_df = db_df.join(scryfall_df, on="scryfall_id")
     momir_df = momir_legal(db_df)
 
-    collected_df = dlens_df[["card"]].set_index("card").join(db_df, on="card").reset_index()
+    collected_df = (
+        dlens_df[["card"]].set_index("card").join(db_df, on="card").reset_index()
+    )
     missing_names = get_missing(momir_df, collected_df)
     missing_names_ck = missing_names.str.split(" // ").str[0]
 

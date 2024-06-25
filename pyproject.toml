@@ -16,6 +16,7 @@ dependencies = [
     "pylint",
     "pytest",
     "requests",
+    "ruff",
 ]
 dynamic = ["version", "readme"]
 
