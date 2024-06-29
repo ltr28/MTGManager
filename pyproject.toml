@@ -17,6 +17,8 @@ dependencies = [
     "pytest",
     "requests",
     "ruff",
+    "django",
+    "python-decouple",
 ]
 dynamic = ["version", "readme"]
 

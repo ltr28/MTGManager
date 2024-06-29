@@ -21,7 +21,7 @@ share/python-wheels/
 *.egg-info/
 .installed.cfg
 *.egg
-MANIFEST
+*.env
 
 # Unit test / coverage reports
 htmlcov/
